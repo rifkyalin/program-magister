@@ -1,208 +1,523 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penerimaan Magister - Kuliah Fleksibel untuk Profesional</title>
-    <!-- Load Tailwind CSS -->
+    <title>Penerimaan Mahasiswa Baru - Program Magister</title>
+    
+    <!-- Google Fonts: Playfair Display (Elegan) & Inter (Modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration for Custom Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#064E3B',    /* Deep Emerald Green */
+                            light: '#059669',    /* Lighter Green for hovers */
+                            gold: '#C5A059',     /* Metallic Gold */
+                            goldlight: '#E5C585',/* Lighter Gold */
+                            cream: '#F9F9F7',    /* Off-white paper color */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* Custom Tailwind Configuration and Styles */
-        :root {
-            /* Warna Primer: Hijau Tua/Akademik */
-            --color-primary: #004d40;
-            /* Warna Sekunder: Emas/Krem */
-            --color-secondary: #ffc107;
-            /* Warna Aksen: Hijau Muda */
-            --color-accent: #4caf50;
-        }
-
-        /* Custom configuration for Tailwind colors */
-        .gold-text { color: var(--color-secondary); }
-        .bg-primary { background-color: var(--color-primary); }
-        .bg-secondary { background-color: var(--color-secondary); }
-        .text-primary { color: var(--color-primary); }
-        .border-secondary { border-color: var(--color-secondary); }
-
-        /* General Body and Font */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7;
-        }
-
-        /* Hero Section Styling for background image and overlay */
-        .hero-section {
-            background-image: url('https://placehold.co/1920x1080/004d40/fff?text=Foto+Kampus+atau+Wisuda');
+        /* Custom Styles for nuances not covered by Tailwind utilities */
+        .hero-bg {
+            background-image: linear-gradient(to right, rgba(6, 78, 59, 0.9), rgba(6, 78, 59, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
-            position: relative;
-            z-index: 1;
         }
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.6); /* Overlay gelap untuk kontras teks */
-            z-index: -1;
+        
+        .gold-gradient-text {
+            background: linear-gradient(45deg, #C5A059, #E5C585, #C5A059);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Custom Button Style with Gradient/Shadow */
-        .btn-cta {
+        .card-hover {
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
-        .btn-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Custom List/Icon Styling */
-        .icon-list-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        .icon-list-item svg {
-            flex-shrink: 0;
-            color: var(--color-secondary); /* Ikon berwarna emas */
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="bg-brand-cream text-gray-800 font-sans antialiased">
 
-    <!-- 1. Hero Section -->
-    <header class="hero-section text-white min-h-[600px] flex items-center justify-center">
-        <div class="container mx-auto px-4 py-20 text-center relative z-10">
-            <!-- Overlay Image Placeholder/Fallback -->
-            <img src="https://placehold.co/120x120/ffc107/004d40?text=LOGO" alt="Logo Universitas" class="mx-auto mb-6 rounded-full shadow-lg border-4 border-secondary">
-
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 uppercase tracking-tight">
-                Penerimaan Mahasiswa Baru <span class="gold-text block sm:inline">Program Magister</span>
-            </h1>
-            <p class="text-xl md:text-3xl font-light mb-10 max-w-3xl mx-auto">
-                Kuliah Fleksibel untuk Anda yang Sibuk Bekerja
-            </p>
-
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="#register" class="btn-cta bg-secondary text-primary font-bold py-3 px-8 rounded-lg text-lg hover:bg-yellow-400 transition duration-300">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-brand-green text-brand-gold flex items-center justify-center rounded-full text-xl">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="leading-tight">
+                    <h1 class="text-xl font-serif font-bold text-brand-green tracking-wide group-hover:text-brand-light transition">GRADUATE<span class="text-brand-gold">SCHOOL</span></h1>
+                    <span class="text-xs text-gray-500 tracking-widest uppercase">Program Pascasarjana</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#program" class="hover:text-brand-green transition">Program Studi</a>
+                <a href="#biaya" class="hover:text-brand-green transition">Biaya & Kelas</a>
+                <a href="#keunggulan" class="hover:text-brand-green transition">Keunggulan</a>
+                <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20Program%20Magister" target="_blank" class="bg-brand-green text-white px-6 py-2.5 rounded-full hover:bg-brand-light transition shadow-lg border border-brand-green hover:border-brand-light">
                     Daftar Sekarang
                 </a>
-                <a href="https://wa.me/628123456789" target="_blank" class="btn-cta bg-primary text-white font-semibold py-3 px-8 rounded-lg text-lg border-2 border-secondary hover:bg-green-700 transition duration-300">
-                    Konsultasi via WhatsApp
-                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-brand-green text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 flex flex-col gap-4 shadow-lg">
+            <a href="#program" class="text-gray-700 hover:text-brand-green">Program Studi</a>
+            <a href="#biaya" class="text-gray-700 hover:text-brand-green">Biaya & Kelas</a>
+            <a href="#keunggulan" class="text-gray-700 hover:text-brand-green">Keunggulan</a>
+            <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20Program%20Magister" target="_blank" class="text-center bg-brand-green text-white py-3 rounded-lg">Daftar Sekarang</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center relative pt-20">
+        <div class="container mx-auto px-6 relative z-10 text-center md:text-left">
+            <div class="md:w-2/3 lg:w-1/2">
+                <div class="inline-block bg-brand-gold/20 border border-brand-gold/40 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6">
+                    <span class="text-brand-goldlight text-sm font-semibold tracking-wider uppercase">Penerimaan Mahasiswa Baru 2025</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight mb-6">
+                    Raih Gelar Magister, <br>
+                    <span class="text-brand-gold italic">Tingkatkan Karir Anda.</span>
+                </h1>
+                <p class="text-gray-200 text-lg md:text-xl mb-8 leading-relaxed font-light">
+                    Program Magister dengan kurikulum fleksibel yang dirancang khusus untuk profesional. Tetap produktif bekerja sambil mengejar gelar akademik bergengsi.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20Program%20Magister" target="_blank" class="bg-brand-gold hover:bg-brand-goldlight text-brand-green font-bold py-4 px-8 rounded-lg shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1 text-center">
+                        Daftar Sekarang
+                    </a>
+                    <a href="https://wa.me/6281216775759?text=Halo,%20saya%20tertarik%20konsultasi%20Program%20Magister" target="_blank" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-green font-semibold py-4 px-8 rounded-lg transition flex items-center justify-center gap-2 group">
+                        <i class="fab fa-whatsapp text-xl group-hover:text-green-600"></i> Konsultasi WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
-    </header>
+        
+        <!-- Decorative Elements -->
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-brand-cream to-transparent"></div>
+    </section>
 
-    <main>
-        <!-- 2. Masalah & Solusi (Pain Point) -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4 max-w-4xl text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
-                    Sibuk bekerja tapi ingin lanjut S2? <span class="gold-text">Kami punya solusinya!</span>
-                </h2>
-                <p class="text-xl text-gray-600 leading-relaxed">
-                    Program Magister kami dirancang dengan sistem <span class="font-bold">pembelajaran fleksibel (Hybrid)</span>, sangat cocok untuk profesional sibuk yang ingin meningkatkan karir dan kualifikasi akademik tanpa harus meninggalkan komitmen pekerjaan mereka saat ini.
-                </p>
+    <!-- Pain Points Section -->
+    <section class="py-20 bg-brand-cream">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 relative">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-brand-gold/20 rounded-full z-0"></div>
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Profesional Sibuk" class="relative z-10 rounded-xl shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-xl z-20 hidden md:block border-l-4 border-brand-green">
+                        <p class="font-serif italic text-lg text-gray-700">"Karir naik, pendidikan lanjut."</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-green mb-6">Sibuk bekerja tapi ingin lanjut S2? <br>Kami punya solusinya!</h2>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                        Banyak profesional menunda studi lanjut karena takut jadwal kuliah bentrok dengan pekerjaan. Kami memahami tantangan Anda.
+                    </p>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        Program Magister kami dirancang dengan sistem <strong>Blended Learning</strong> yang fleksibel, memungkinkan Anda untuk meningkatkan kualifikasi akademik tanpa harus meninggalkan tanggung jawab profesional Anda.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fas fa-check-circle text-brand-gold text-xl"></i> Jadwal kuliah akhir pekan/online.
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fas fa-check-circle text-brand-gold text-xl"></i> Tugas yang relevan dengan dunia kerja.
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fas fa-check-circle text-brand-gold text-xl"></i> Lulus tepat waktu.
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 3. Program Studi yang Ditawarkan -->
-        <section class="py-16 bg-primary text-white">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-10 gold-text">
-                    Pilihan Program Studi Unggulan
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <!-- Program Card 1 -->
-                    <div class="p-6 bg-white text-primary rounded-xl shadow-xl transform hover:scale-105 transition duration-300">
-                        <svg class="w-10 h-10 mx-auto mb-4 gold-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 4.24l7.19 12.56H4.81L12 6.24zM11 17h2v-2h-2v2zm0-4h2v-4h-2v4z"/></svg>
-                        <h3 class="text-xl font-semibold">Magister Pendidikan Agama Islam</h3>
-                        <p class="text-sm text-gray-600 mt-2">Mencetak pendidik profesional yang berintegritas dan unggul dalam ilmu keagamaan.</p>
+    <!-- Program Studi -->
+    <section id="program" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-green mb-4">Pilihan Program Studi Unggulan</h2>
+            <div class="w-24 h-1 bg-brand-gold mx-auto mb-12"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 card-hover text-left group">
+                    <div class="w-14 h-14 bg-brand-green/10 rounded-full flex items-center justify-center text-brand-green text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition">
+                        <i class="fas fa-book-quran"></i>
                     </div>
-
-                    <!-- Program Card 2 -->
-                    <div class="p-6 bg-white text-primary rounded-xl shadow-xl transform hover:scale-105 transition duration-300">
-                        <svg class="w-10 h-10 mx-auto mb-4 gold-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v6h-2V7zm0 8h2v2h-2v-2z"/></svg>
-                        <h3 class="text-xl font-semibold">Magister Hukum</h3>
-                        <p class="text-sm text-gray-600 mt-2">Pengembangan keahlian hukum praktis dan teoritis untuk karir di bidang peradilan dan korporasi.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Magister Pendidikan Agama Islam</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Mencetak pendidik dan ahli kurikulum Islam yang visioner dan adaptif terhadap teknologi pendidikan modern.</p>
+                    <div class="border-t border-gray-100 pt-4">
+                        <span class="text-xs font-semibold tracking-wider text-brand-gold uppercase">Terakreditasi Baik Sekali</span>
                     </div>
+                </div>
 
-                    <!-- Program Card 3 -->
-                    <div class="p-6 bg-white text-primary rounded-xl shadow-xl transform hover:scale-105 transition duration-300">
-                        <svg class="w-10 h-10 mx-auto mb-4 gold-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM15 11H9V9h6v2zM15 13H9v2h6v-2z"/></svg>
-                        <h3 class="text-xl font-semibold">Magister Hukum Keluarga Islam</h3>
-                        <p class="text-sm text-gray-600 mt-2">Fokus pada penyelesaian isu-isu hukum keluarga Islam kontemporer dengan perspektif syariah.</p>
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 card-hover text-left group">
+                    <div class="w-14 h-14 bg-brand-green/10 rounded-full flex items-center justify-center text-brand-green text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition">
+                        <i class="fas fa-scale-balanced"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Magister Hukum</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Mempersiapkan praktisi hukum yang kompeten dengan pemahaman mendalam tentang hukum nasional dan internasional.</p>
+                    <div class="border-t border-gray-100 pt-4">
+                        <span class="text-xs font-semibold tracking-wider text-brand-gold uppercase">Konsentrasi Hukum Bisnis & Pidana</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 card-hover text-left group">
+                    <div class="w-14 h-14 bg-brand-green/10 rounded-full flex items-center justify-center text-brand-green text-2xl mb-6 group-hover:bg-brand-green group-hover:text-white transition">
+                        <i class="fas fa-users-rays"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Magister Hukum Keluarga Islam</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Melahirkan ahli hukum keluarga yang mampu menjawab dinamika sosial masyarakat kontemporer.</p>
+                    <div class="border-t border-gray-100 pt-4">
+                        <span class="text-xs font-semibold tracking-wider text-brand-gold uppercase">Prospek Hakim & Konsultan</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 4. Biaya & Pilihan Kelas Fleksibel -->
-        <section class="py-16 bg-gray-100" id="biaya">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-10">
-                    Investasi Pendidikan & Pilihan Kelas
-                </h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-4xl mx-auto">
-                    <!-- Card 1: Kelas Reguler -->
-                    <div class="p-8 bg-white border-4 border-gray-300 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
-                        <h3 class="text-2xl font-extrabold text-primary mb-3">Kelas Reguler</h3>
-                        <p class="text-4xl font-bold gold-text mb-4">
-                            Rp 5.000.000
-                            <span class="text-lg text-gray-500 font-normal block">/ semester</span>
-                        </p>
-                        <ul class="text-left text-lg space-y-2 mb-6">
-                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 13.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Jadwal Normal Kampus</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 13.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Pembayaran per Semester</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 13.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Cocok untuk Lulusan Baru</li>
-                        </ul>
-                        <a href="#register" class="w-full inline-block bg-primary text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">Pilih Kelas Reguler</a>
+    <!-- Biaya & Kelas -->
+    <section id="biaya" class="py-20 bg-brand-green relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Investasi Pendidikan Terbaik</h2>
+                <p class="text-brand-goldlight text-lg">Pilih metode kuliah yang sesuai dengan ritme hidup Anda.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center items-stretch gap-8 max-w-5xl mx-auto">
+                <!-- Regular Class -->
+                <div class="bg-white rounded-2xl shadow-2xl p-8 md:w-1/3 flex flex-col border-4 border-transparent hover:border-brand-gold/50 transition">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Kelas Reguler</h3>
+                    <p class="text-gray-500 text-sm mb-6">Untuk fresh graduate atau yang memiliki waktu luang.</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-serif font-bold text-brand-green">Rp 5.000.000</span>
+                        <span class="text-gray-500">/ semester</span>
                     </div>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-green-500"></i> Kuliah Senin - Kamis</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-green-500"></i> Full Tatap Muka</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-green-500"></i> Akses Fasilitas Penuh</li>
+                    </ul>
+                    <a href="https://wa.me/6281216775759?text=Daftar%20Kelas%20Reguler" class="block w-full text-center py-3 border border-brand-green text-brand-green rounded-lg hover:bg-brand-green hover:text-white transition font-semibold">
+                        Daftar Reguler
+                    </a>
+                </div>
 
-                    <!-- Card 2: Kelas Eksekutif (Favorite Choice) -->
-                    <div class="relative p-8 bg-white border-4 border-secondary rounded-2xl shadow-2xl transform scale-105 hover:scale-108 transition duration-300">
-                        <div class="absolute -top-4 -right-4 bg-secondary text-primary px-4 py-1 rounded-full text-sm font-bold shadow-md transform rotate-3">
-                            <svg class="w-4 h-4 inline-block -mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.817 2.042a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.817-2.042a1 1 0 00-1.175 0l-2.817 2.042c-.785.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.721c-.783-.57-.381-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            Pilihan Favorit
+                <!-- Executive Class -->
+                <div class="bg-white rounded-2xl shadow-2xl p-8 md:w-1/3 flex flex-col relative transform md:-translate-y-4 border-4 border-brand-gold">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-brand-gold text-brand-green font-bold px-6 py-2 rounded-full text-sm shadow-lg uppercase tracking-wider">
+                        <i class="fas fa-star mr-1"></i> Favorite Choice
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Kelas Eksekutif</h3>
+                    <p class="text-gray-500 text-sm mb-6">Dirancang khusus untuk profesional sibuk.</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-serif font-bold text-brand-green">Rp 33.300.000</span>
+                        <span class="text-gray-500 block text-sm mt-1">Biaya Total Sampai Lulus*</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-center gap-3 text-gray-800 font-semibold"><i class="fas fa-check-circle text-brand-gold"></i> Tidak Mengganggu Kerja</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-brand-gold"></i> Kuliah Weekend / Hybrid</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-brand-gold"></i> Pembimbingan Tesis Intensif</li>
+                        <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-brand-gold"></i> Networking Profesional</li>
+                    </ul>
+                    <a href="https://wa.me/6281216775759?text=Daftar%20Kelas%20Eksekutif" class="block w-full text-center py-4 bg-brand-green text-brand-gold rounded-lg hover:bg-brand-green/90 transition font-bold shadow-lg">
+                        Daftar Eksekutif
+                    </a>
+                    <p class="text-center text-xs text-gray-400 mt-4">*Syarat & ketentuan berlaku</p>
+                </div>
+
+                 <!-- Scholarship/Info -->
+                 <div class="bg-white/10 backdrop-blur rounded-2xl p-8 md:w-1/3 flex flex-col justify-center text-center border border-white/20">
+                    <div class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center mx-auto mb-4 text-brand-green text-2xl">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Butuh Bantuan?</h3>
+                    <p class="text-gray-200 text-sm mb-6">Konsultasikan rencana studi dan opsi pembayaran cicilan dengan tim admisi kami.</p>
+                    <a href="https://wa.me/6281216775759" class="text-brand-gold font-bold hover:text-white transition">Hubungi Admin <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kenapa Harus Disini -->
+    <section id="keunggulan" class="py-20 bg-brand-cream">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-green mb-4">Mengapa Memilih Kami?</h2>
+                <div class="w-24 h-1 bg-brand-gold mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-brand-green mb-2">Jadwal Fleksibel</h4>
+                        <p class="text-gray-600 text-sm">Opsi kelas akhir pekan dan daring yang disesuaikan dengan jam kerja profesional.</p>
+                    </div>
+                </div>
+                 <!-- Feature 2 -->
+                 <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-brand-green mb-2">Dosen Praktisi & Ahli</h4>
+                        <p class="text-gray-600 text-sm">Diajar oleh akademisi bergelar Doktor/Profesor dan praktisi industri berpengalaman.</p>
+                    </div>
+                </div>
+                 <!-- Feature 3 -->
+                 <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-brand-green mb-2">Sistem Hybrid Modern</h4>
+                        <p class="text-gray-600 text-sm">Platform E-Learning terintegrasi memudahkan akses materi dimanapun Anda berada.</p>
+                    </div>
+                </div>
+                 <!-- Feature 4 -->
+                 <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-brand-green mb-2">Kuliah Sambil Bekerja</h4>
+                        <p class="text-gray-600 text-sm">Kurikulum didesain agar tidak membebani, namun tetap berbobot dan substantif.</p>
+                    </div>
+                </div>
+                 <!-- Feature 5 -->
+                 <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-brand-green mb-2">Kurikulum Relevan</h4>
+                        <p class="text-gray-600 text-sm">Materi studi kasus nyata yang dapat langsung diaplikasikan di dunia kerja.</p>
+                    </div>
+                </div>
+                 <!-- Feature 6 -->
+                 <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-brand-green mb-2">Lingkungan Akademik</h4>
+                        <p class="text-gray-600 text-sm">Kampus hijau, tenang, dan kondusif untuk diskusi intelektual dan networking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section class="py-20 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-center text-brand-green mb-12">Kata Alumni & Mahasiswa</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testi 1 -->
+                <div class="bg-brand-cream p-6 rounded-xl relative">
+                    <i class="fas fa-quote-left text-4xl text-brand-gold/20 absolute top-4 left-4"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10 pt-4">"Awalnya ragu bisa bagi waktu antara mimpin tim di kantor dan kuliah. Tapi kelas Eksekutif di sini sangat supportif. Dosennya mengerti kesibukan profesional."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="text-2xl font-extrabold text-primary mb-3">Kelas Eksekutif</h3>
-                        <p class="text-4xl font-bold text-primary mb-4">
-                            Rp 33.300.000
-                            <span class="text-lg text-gray-500 font-normal block">Biaya Sampai Lulus (All-in)</span>
-                        </p>
-                        <ul class="text-left text-lg space-y-2 mb-6">
-                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 13.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span class="font-semibold">Jadwal di Luar Jam Kerja</span></li>
-                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 13.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Biaya Tetap Sampai Lulus</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-secondary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 13.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Cocok untuk <span class="font-semibold">Profesional Sibuk</span></li>
-                        </ul>
-                        <a href="#register" class="w-full inline-block bg-secondary text-primary py-3 rounded-lg font-bold hover:bg-yellow-400 transition duration-300">Pilih Kelas Eksekutif</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Kenapa Harus Kuliah di Sini? (Benefit Section) -->
-        <section class="py-20 bg-white">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary text-center mb-12">
-                    Kenapa Magister Kami Pilihan Terbaik Anda?
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <!-- Benefit 1 -->
-                    <div class="icon-list-item p-4 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300 border-l-4 border-secondary">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         <div>
-                            <p class="text-xl font-semibold text-primary">Jadwal Fleksibel</p>
-                            <p class="text-gray-600 text-sm">Kuliah dirancang agar tidak mengganggu jam kerja reguler Anda.</p>
+                            <h5 class="font-bold text-brand-green">Budi Santoso, M.H.</h5>
+                            <span class="text-xs text-gray-500">Legal Manager, Jakarta</span>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Benefit 2 -->
-                    <div class="icon-list-item p-4 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300 border-l-4 border-secondary">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-5m0 0l-1-1m1 1l-1 1m-4 4l-1-1m1 1l-1-1M9 11H7m5-1h2m-4 0h2m-4 4h2m-4 0h2m-4 0h2m-4 4h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m-4 0h2m
+                <!-- Testi 2 -->
+                <div class="bg-brand-cream p-6 rounded-xl relative">
+                    <i class="fas fa-quote-left text-4xl text-brand-gold/20 absolute top-4 left-4"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10 pt-4">"Sistem hybrid sangat membantu saya yang sering dinas luar kota. Materinya daging semua, langsung kepake buat ngajar dan manajemen sekolah."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-brand-green">Siti Aminah, M.Pd.</h5>
+                            <span class="text-xs text-gray-500">Kepala Sekolah, Surabaya</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-brand-cream p-6 rounded-xl relative">
+                    <i class="fas fa-quote-left text-4xl text-brand-gold/20 absolute top-4 left-4"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10 pt-4">"Investasi terbaik untuk karir. Networking dengan teman sekelas yang rata-rata profesional membuka banyak peluang baru."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-brand-green">Rahmat Hidayat, M.H.</h5>
+                            <span class="text-xs text-gray-500">Hakim Pengadilan Agama</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-brand-green relative overflow-hidden text-center">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">Jangan Tunda Impian Anda.</h2>
+            <p class="text-xl text-brand-goldlight mb-10 max-w-2xl mx-auto">Kuota kelas Eksekutif terbatas setiap semesternya. Tingkatkan karir dan kualifikasi akademik Anda sekarang juga.</p>
+            
+            <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20kuliah%20Magister" class="inline-flex items-center gap-3 bg-brand-gold hover:bg-white hover:text-brand-green text-brand-green font-bold py-4 px-10 rounded-full shadow-2xl transition transform hover:scale-105 text-lg">
+                <i class="fab fa-whatsapp text-2xl"></i> Konsultasi & Daftar via WhatsApp
+            </a>
+            <p class="mt-6 text-gray-300 text-sm">Respon Cepat Admin: Senin - Sabtu, 08.00 - 17.00 WIB</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-green border-t border-brand-light/30 pt-16 pb-8 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-university text-brand-gold text-2xl"></i>
+                        <span class="text-xl font-serif font-bold tracking-wide">GRADUATE<span class="text-brand-gold">SCHOOL</span></span>
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                        Pusat pendidikan pascasarjana terkemuka yang mengintegrasikan nilai-nilai keislaman, keilmuan, dan profesionalisme.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-green transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-green transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-green transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-brand-gold mb-6 uppercase tracking-wider text-sm">Program Studi</h4>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li><a href="#" class="hover:text-white transition">Magister PAI</a></li>
+                        <li><a href="#" class="hover:text-white transition">Magister Hukum</a></li>
+                        <li><a href="#" class="hover:text-white transition">Hukum Keluarga Islam</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-brand-gold mb-6 uppercase tracking-wider text-sm">Informasi</h4>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li><a href="#" class="hover:text-white transition">Pendaftaran</a></li>
+                        <li><a href="#" class="hover:text-white transition">Beasiswa</a></li>
+                        <li><a href="#" class="hover:text-white transition">Download Brosur</a></li>
+                        <li><a href="#" class="hover:text-white transition">Karir Alumni</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-brand-gold mb-6 uppercase tracking-wider text-sm">Hubungi Kami</h4>
+                    <ul class="space-y-4 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-brand-gold"></i>
+                            <span>Jl. Pendidikan No. 123, Kampus Pascasarjana, Gedung A Lt. 1</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone text-brand-gold"></i>
+                            <span>+62 812-1677-5759 (Admin)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-brand-gold"></i>
+                            <span>pmb@graduateschool.ac.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-gray-400 text-sm">&copy; 2025 Graduate School Program. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281216775759?text=Halo,%20saya%20butuh%20info%20detail%20tentang%20Program%20Magister" target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-600 text-white px-6 py-3 rounded-full shadow-2xl hover:bg-green-700 transition transform hover:scale-105 flex items-center gap-3 group border-2 border-white animate-bounce-slow">
+        <i class="fab fa-whatsapp text-3xl"></i>
+        <span class="font-bold text-lg">Info detail silahkan telpon</span>
+    </a>
+
+    <!-- JavaScript for Mobile Menu & Scroll Effect -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+    </script>
+</body>
+</html>
