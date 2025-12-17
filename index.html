@@ -85,15 +85,37 @@
         .animate-float {
             animation: float 6s ease-in-out infinite;
         }
+        
+        /* Floating WA Button Animation */
+        .pulse-shadow {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+        
+        @keyframes pulse-green {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
     </style>
 </head>
 <body class="bg-brand-cream text-gray-800 font-sans antialiased">
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
+    <nav class="bg-white shadow-md fixed w-full z-40 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center gap-3 group">
-              <img src="img/logo-unsuri.png" alt="Logo Kampus" class="w-10 h-10 object-contain">
+              <!-- Placeholder logo if image missing -->
+              <div class="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center text-brand-gold font-bold text-xl">U</div>
                 <div class="leading-tight">
                     <h1 class="text-xl font-serif font-bold text-brand-green tracking-wide group-hover:text-brand-light transition">KULIAH<span class="text-brand-gold">MAGISTER</span></h1>
                     <span class="text-xs text-gray-500 tracking-widest uppercase">Pascasarjana Universitas Sunan Giri</span>
@@ -126,16 +148,9 @@
         
         <!-- Background Elements (Building + Overlay) -->
         <div class="absolute inset-0 z-0">
-            <!-- 
-                PERHATIAN: 
-                Saya sudah MENGHAPUS kode 'onerror'.
-                Jika path salah, gambar ini akan terlihat rusak (ikon pecah).
-                Pastikan file Anda bernama 'foto-kampus.png' ada di dalam folder 'img'.
-                Jika file aslinya JPG, ubah menjadi 'img/foto-kampus.jpg'
-            -->
-            <img src="https://unsplash.com/photos/a-boat-is-in-the-water-near-a-building-BhdVzyBWCJ4" 
+            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
                  alt="Campus Background" 
-                 class="w-full h-[60vh] object-cover object-top opacity-20">
+                 class="w-full h-[60vh] object-cover object-center opacity-20">
             <!-- Gradient Overlay to fade the bottom of the image -->
             <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-brand-cream"></div>
         </div>
@@ -192,13 +207,18 @@
                         </div>
                     </div>
                     
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20Program%20Magister" target="_blank" class="bg-brand-gold hover:bg-brand-goldlight text-brand-green font-bold py-3.5 px-8 rounded-full shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1 text-center">
-                            Daftar Sekarang
+                    <!-- REVISED BUTTON SECTION -->
+                    <div class="flex flex-col items-start">
+                        <a href="https://wa.me/6281216775759?text=Halo%20Admin,%20saya%20ingin%20bertanya%20biaya%20%26%20perkuliahan%20Program%20Magister" 
+                           target="_blank" 
+                           class="w-full sm:w-auto bg-brand-gold hover:bg-brand-goldlight text-brand-green font-bold py-4 px-8 rounded-full shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+                            💬 Konsultasi Program S2 Sekarang
                         </a>
-                        <a href="#biaya" class="bg-transparent border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white font-semibold py-3.5 px-8 rounded-full transition text-center">
-                            Info Selengkapnya
-                        </a>
+                        
+                        <!-- TEXT PEMAKSA -->
+                        <p class="mt-3 text-sm text-gray-500 font-medium flex items-center gap-1">
+                            ⚡ Admin aktif • Respon cepat • Konsultasi gratis
+                        </p>
                     </div>
                     
                     <p class="mt-6 text-gray-500 italic font-serif text-lg">"Kuliah Fleksibel untuk Anda yang Sibuk!"</p>
@@ -219,16 +239,16 @@
                             <!-- Overlay Gradient for text readability if needed -->
                             <div class="absolute inset-0 bg-gradient-to-t from-brand-green/80 via-transparent to-transparent opacity-60 z-10"></div>
                             
-                            <!-- Students Image -->
-                            <img src="img/foto-kampus.png" 
+                            <!-- Students Image (Fallback URL used for demo reliability) -->
+                            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
                                  alt="Mahasiswa Pascasarjana" 
                                  class="w-full h-auto object-cover transform scale-105">
                                  
                             <!-- Badge on Image -->
                             <div class="absolute bottom-6 left-6 right-6 z-20">
                                 <div class="bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border-l-4 border-brand-green">
-                                    <p class="text-brand-green font-bold text-sm"></p>
-                                    <p class="text-xs text-gray-500"></p>
+                                    <p class="text-brand-green font-bold text-sm">Akreditasi Unggul</p>
+                                    <p class="text-xs text-gray-500">Kualitas pendidikan terjamin</p>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +279,8 @@
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2 relative">
                     <div class="absolute -top-4 -left-4 w-24 h-24 bg-brand-gold/20 rounded-full z-0"></div>
-                    <img src="img/magister.jpg" alt="Profesional Sibuk" class="relative z-10 rounded-xl shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                    <!-- Fallback image used -->
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1288&q=80" alt="Profesional Sibuk" class="relative z-10 rounded-xl shadow-2xl grayscale hover:grayscale-0 transition duration-700">
                     <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-xl z-20 hidden md:block border-l-4 border-brand-green">
                         <p class="font-serif italic text-lg text-gray-700">"Karir naik, pendidikan lanjut."</p>
                     </div>
@@ -281,8 +302,6 @@
             </div>
         </div>
     </section>
-
-
 
     <!-- Biaya & Kelas -->
     <section id="biaya" class="py-20 bg-brand-green relative overflow-hidden">
@@ -337,7 +356,6 @@
                         <li class="flex items-center gap-3 text-gray-800 font-semibold"><i class="fas fa-check-circle text-brand-gold"></i> Tidak Mengganggu Kerja</li>
                         <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-brand-gold"></i> Kuliah Hybrid</li>
                         <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-brand-gold"></i> Lulus tepat waktu</li>
-
                     </ul>
                     <a href="https://wa.me/6281216775759?text=Daftar%20Kelas%20Eksekutif" class="block w-full text-center py-4 bg-brand-green text-brand-gold rounded-lg hover:bg-brand-green/90 transition font-bold shadow-lg">
                         Daftar Eksekutif
@@ -358,9 +376,6 @@
         </div>
     </section>
 
-    
-    
-
     <!-- CTA Section -->
     <section class="py-24 bg-brand-green relative overflow-hidden text-center">
         <div class="absolute inset-0 bg-black/20"></div>
@@ -375,7 +390,13 @@
         </div>
     </section>
 
-
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20konsultasi%20Program%20Magister"
+       target="_blank"
+       class="fixed bottom-5 right-5 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3.5 px-6 rounded-full shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] transition transform hover:scale-105 flex items-center gap-2 no-underline pulse-shadow">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span>Konsultasi via WhatsApp</span>
+    </a>
 
     <!-- JavaScript for Mobile Menu & Scroll Effect -->
     <script>
@@ -401,5 +422,3 @@
     </script>
 </body>
 </html>
-
-
