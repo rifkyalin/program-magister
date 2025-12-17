@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17784225997"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17784225997');
+    </script>
+    
+    <!-- Script Tracking WhatsApp (Langkah 2) -->
+    <script>
+      function trackWhatsApp() {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17784225997/XXXXXXXXXX' 
+          // ⚠️ PENTING: Ganti 'XXXXXXXXXX' dengan Label Konversi dari Google Ads Anda
+        });
+      }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Penerimaan Mahasiswa Baru - Program Magister</title>
@@ -125,7 +144,8 @@
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
                 <a href="#biaya" class="hover:text-brand-green transition">Biaya & Kelas</a>
-                <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20Program%20Magister" target="_blank" class="bg-brand-green text-white px-6 py-2.5 rounded-full hover:bg-brand-light transition shadow-lg border border-brand-green hover:border-brand-light">
+                <!-- UPDATE: Added onclick -->
+                <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20Program%20Magister" target="_blank" onclick="trackWhatsApp()" class="bg-brand-green text-white px-6 py-2.5 rounded-full hover:bg-brand-light transition shadow-lg border border-brand-green hover:border-brand-light">
                     Daftar Sekarang
                 </a>
             </div>
@@ -139,7 +159,8 @@
         <!-- Mobile Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 flex flex-col gap-4 shadow-lg">
             <a href="#biaya" class="text-gray-700 hover:text-brand-green">Biaya & Kelas</a>
-            <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20Program%20Magister" target="_blank" class="text-center bg-brand-green text-white py-3 rounded-lg">Daftar Sekarang</a>
+            <!-- UPDATE: Added onclick -->
+            <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20Program%20Magister" target="_blank" onclick="trackWhatsApp()" class="text-center bg-brand-green text-white py-3 rounded-lg">Daftar Sekarang</a>
         </div>
     </nav>
 
@@ -209,8 +230,10 @@
                     
                     <!-- REVISED BUTTON SECTION -->
                     <div class="flex flex-col items-start">
+                        <!-- UPDATE: Added onclick -->
                         <a href="https://wa.me/6281216775759?text=Halo%20Admin,%20saya%20ingin%20bertanya%20biaya%20%26%20perkuliahan%20Program%20Magister" 
                            target="_blank" 
+                           onclick="trackWhatsApp()"
                            class="w-full sm:w-auto bg-brand-gold hover:bg-brand-goldlight text-brand-green font-bold py-4 px-8 rounded-full shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1 text-center flex items-center justify-center gap-2">
                             💬 Konsultasi Program S2 Sekarang
                         </a>
@@ -247,7 +270,7 @@
                             <!-- Badge on Image -->
                             <div class="absolute bottom-6 left-6 right-6 z-20">
                                 <div class="bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border-l-4 border-brand-green">
-                                    <p class="text-brand-green font-bold text-sm"></p>
+                                    <p class="text-brand-green font-bold text-sm">Akreditasi Unggul</p>
                                     <p class="text-xs text-gray-500">Kualitas pendidikan terjamin</p>
                                 </div>
                             </div>
@@ -336,7 +359,8 @@
                         <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-green-500"></i> Perkuliahan hybrid</li>
                         <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-green-500"></i> Akses Fasilitas Penuh</li>
                     </ul>
-                    <a href="https://wa.me/6281216775759?text=Daftar%20Kelas%20Reguler" class="block w-full text-center py-3 border border-brand-green text-brand-green rounded-lg hover:bg-brand-green hover:text-white transition font-semibold">
+                    <!-- UPDATE: Added onclick -->
+                    <a href="https://wa.me/6281216775759?text=Daftar%20Kelas%20Reguler" target="_blank" onclick="trackWhatsApp()" class="block w-full text-center py-3 border border-brand-green text-brand-green rounded-lg hover:bg-brand-green hover:text-white transition font-semibold">
                         Daftar Reguler
                     </a>
                 </div>
@@ -357,7 +381,8 @@
                         <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-brand-gold"></i> Kuliah Hybrid</li>
                         <li class="flex items-center gap-3 text-gray-600"><i class="fas fa-check text-brand-gold"></i> Lulus tepat waktu</li>
                     </ul>
-                    <a href="https://wa.me/6281216775759?text=Daftar%20Kelas%20Eksekutif" class="block w-full text-center py-4 bg-brand-green text-brand-gold rounded-lg hover:bg-brand-green/90 transition font-bold shadow-lg">
+                    <!-- UPDATE: Added onclick -->
+                    <a href="https://wa.me/6281216775759?text=Daftar%20Kelas%20Eksekutif" target="_blank" onclick="trackWhatsApp()" class="block w-full text-center py-4 bg-brand-green text-brand-gold rounded-lg hover:bg-brand-green/90 transition font-bold shadow-lg">
                         Daftar Eksekutif
                     </a>
                     <p class="text-center text-xs text-gray-400 mt-4">Daftar sekarang juga</p>
@@ -370,7 +395,8 @@
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">Butuh Bantuan?</h3>
                     <p class="text-gray-200 text-sm mb-6">Konsultasikan rencana studi dan opsi pembayaran cicilan dengan tim admisi kami.</p>
-                    <a href="https://wa.me/6281216775759" class="text-brand-gold font-bold hover:text-white transition">Hubungi Admin <i class="fas fa-arrow-right ml-2"></i></a>
+                    <!-- UPDATE: Added onclick -->
+                    <a href="https://wa.me/6281216775759" target="_blank" onclick="trackWhatsApp()" class="text-brand-gold font-bold hover:text-white transition">Hubungi Admin <i class="fas fa-arrow-right ml-2"></i></a>
                 </div>
             </div>
         </div>
@@ -383,7 +409,8 @@
             <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">Jangan Tunda Impian Anda.</h2>
             <p class="text-xl text-brand-goldlight mb-10 max-w-2xl mx-auto">Kuota kelas Eksekutif terbatas setiap semesternya. Tingkatkan karir dan kualifikasi akademik Anda sekarang juga.</p>
             
-            <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20kuliah%20Magister" class="inline-flex items-center gap-3 bg-brand-gold hover:bg-white hover:text-brand-green text-brand-green font-bold py-4 px-10 rounded-full shadow-2xl transition transform hover:scale-105 text-lg">
+            <!-- UPDATE: Added onclick -->
+            <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20mendaftar%20kuliah%20Magister" target="_blank" onclick="trackWhatsApp()" class="inline-flex items-center gap-3 bg-brand-gold hover:bg-white hover:text-brand-green text-brand-green font-bold py-4 px-10 rounded-full shadow-2xl transition transform hover:scale-105 text-lg">
                 <i class="fab fa-whatsapp text-2xl"></i> Konsultasi & Daftar via WhatsApp
             </a>
             <p class="mt-6 text-gray-300 text-sm"></p>
@@ -391,8 +418,10 @@
     </section>
 
     <!-- FLOATING WHATSAPP BUTTON -->
+    <!-- UPDATE: Added onclick -->
     <a href="https://wa.me/6281216775759?text=Halo,%20saya%20ingin%20konsultasi%20Program%20Magister"
        target="_blank"
+       onclick="trackWhatsApp()"
        class="fixed bottom-5 right-5 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3.5 px-6 rounded-full shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] transition transform hover:scale-105 flex items-center gap-2 no-underline pulse-shadow">
         <i class="fab fa-whatsapp text-2xl"></i>
         <span>Konsultasi via WhatsApp</span>
